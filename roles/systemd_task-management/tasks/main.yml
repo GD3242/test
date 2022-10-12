@@ -23,7 +23,7 @@
   become: yes
   template:
     src: tm_front_run.sh.j2
-    dest: /usr/local/task-management/task-management-back/current/run.sh
+    dest: /usr/local/task-management/task-management-front/current/run.sh
     owner: root
     group: root
     mode: 0755
