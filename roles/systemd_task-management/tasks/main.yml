@@ -18,8 +18,8 @@
     owner: root
     group: root
     mode: 0644
-  notify:
-    - reload systemctl
+
+- name: enable task-management.service
   service: name=task-management.service state=stopped enabled=yes
 
 - name: task-management-frontのrun.shの配置.
