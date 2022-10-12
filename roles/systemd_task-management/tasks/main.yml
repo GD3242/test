@@ -18,6 +18,8 @@
     owner: root
     group: root
     mode: 0644
+  notify:
+    - reload systemctl
 
 - name: task-management-frontのrun.shの配置.
   become: yes
