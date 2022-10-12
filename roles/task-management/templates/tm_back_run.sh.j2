@@ -1,0 +1,2 @@
+#!/bin/bash
+java -Xmx{{ task_management_java_memory }}m -Dserver.port={{ task_management_back_port }} -Dspring.profiles.active={{ stage }} -jar /usr/local/task-management/task-management-back/current/task-management.jar

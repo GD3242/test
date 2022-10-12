@@ -1,0 +1,26 @@
+---
+- debug: msg="task-management-front start"
+
+- name: Download setup shell for nodejs
+  get_url: url="https://rpm.nodesource.com/setup_16.x" dest="/tmp/setup_node.sh" mode=0755
+
+- name: Setup nodejs
+  shell: /tmp/setup_node.sh
+
+- name: Install nodejs
+  yum: name=nodejs state=latest
+
+- name: Install yarn
+  npm:
+    name: yarn
+    global: true
+    state: present
+# - name: install volta
+#   shell: curl https://get.volta.sh | bash
+
+# - name: install nodejs
+#   shell: /bin/bash -lc 'volta install node'
+
+# - name: Install yarn
+#   shell: /bin/bash -lc 'npm install yarn -gy'
+

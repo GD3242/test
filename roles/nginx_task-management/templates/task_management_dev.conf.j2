@@ -1,0 +1,47 @@
+server {
+    listen       8081;
+    listen       [::]:8081;
+    root         /usr/local/app2/app2_web/current/;
+    index        index.php index.html;
+
+    location /robots.txt {
+        alias /etc/nginx/robots_app2.txt;
+    }
+
+    location /health.txt {
+        alias /etc/nginx/health_app2.txt;
+        access_log off;
+        break;
+    }
+
+    location / {
+        # 認証時に表示されるメッセージ
+        auth_basic "Restricted";
+        # .htpasswdファイルのパス
+        auth_basic_user_file /etc/nginx/.htpasswd;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Server $host;
+        proxy_set_header X-Forwarded-Port 443;
+        proxy_set_header Host $host;
+
+        proxy_pass http://localhost:9081;
+    }
+    # redirect server error pages to the static page /40x.html
+    #
+    error_page 404 /404.html;
+    location = /40x.html {
+        root /usr/share/nginx/html;
+        internal;
+    }
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+        internal;
+    }
+    client_max_body_size 100m;
+}

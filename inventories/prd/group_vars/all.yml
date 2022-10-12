@@ -1,0 +1,7 @@
+stage: prd
+
+branch: master
+
+# task-management-back
+task_management_java_memory: 512
+task_management_back_port: 9083

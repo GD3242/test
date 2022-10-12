@@ -1,0 +1,49 @@
+---
+- name: common
+  hosts: localhost
+  vars:
+    ansible_user: 'ec2-user'
+  roles:
+    - role: common
+
+- name: task-management
+  hosts: localhost
+  vars:
+    ansible_user: 'ec2-user'
+  roles:
+    - role: task-management
+
+- name: nginx setup
+  hosts: localhost
+  vars:
+    ansible_user: 'ec2-user'
+  roles:
+    - role: nginx_task-management
+
+- name: java17 setup
+  hosts: localhost
+  vars:
+    ansible_user: 'ec2-user'
+  roles:
+    - role: java17
+
+- name: task-management-front setup
+  hosts: localhost
+  vars:
+    ansible_user: 'ec2-user'
+  roles:
+    - role: task-management-front
+
+- name: pm2 setup
+  hosts: localhost
+  vars:
+    ansible_user: 'ec2-user'
+  roles:
+    - role: pm2_task-management
+
+- name: systemd setup
+  hosts: localhost
+  vars:
+    ansible_user: 'ec2-user'
+  roles:
+    - role: systemd_task-management

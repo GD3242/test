@@ -1,0 +1,29 @@
+---
+- debug: msg="script for systemctl java"
+
+- name: task-management-backのrun.shの配置.
+  become: yes
+  template:
+    src: tm_back_run.sh.j2
+    dest: /usr/local/task-management/task-management-back/current/run.sh
+    owner: root
+    group: root
+    mode: 0755
+
+- name: task-management.serviceの配置.
+  become: yes
+  template:
+    src: task-management.service
+    dest: /etc/systemd/system/task-management.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: task-management-frontのrun.shの配置.
+  become: yes
+  template:
+    src: tm_front_run.sh.j2
+    dest: /usr/local/task-management/task-management-back/current/run.sh
+    owner: root
+    group: root
+    mode: 0755

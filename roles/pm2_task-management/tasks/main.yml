@@ -1,0 +1,14 @@
+---
+- debug: msg="install and configure pm2"
+
+- name: Install pm2
+  npm:
+    name: pm2
+    global: true
+    state: present
+
+- name: pm2 startup
+  become: yes
+  shell: pm2 startup
+# - name: Install pm2
+#   shell: /bin/bash -lc 'npm install pm2 -gy'

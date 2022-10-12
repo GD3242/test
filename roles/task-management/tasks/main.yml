@@ -1,0 +1,100 @@
+---
+- debug: msg="task-management"
+
+- name: Creates directory
+  file:
+    path: /usr/local/task-management/task-management-back/current
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Creates directory
+  file:
+    path: /usr/local/task-management/task-management-front/current
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Creates directory
+  file:
+    path: /usr/local/task-management_src
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: task-management-backの01_build.shの配置
+  become: yes
+  template:
+    src: tm_back_build.sh.j2
+    dest: /usr/local/task-management/task-management-back/current/01_build.sh
+    owner: root
+    group: root
+    mode: 0755
+
+- name: task-management-backの02_deploy.shの配置
+  become: yes
+  template:
+    src: tm_back_deploy.sh.j2
+    dest: /usr/local/task-management/task-management-back/current/02_deploy.sh
+    owner: root
+    group: root
+    mode: 0755
+
+- name: task-management-backの03_restart.shの配置
+  become: yes
+  template:
+    src: tm_back_restart.sh.j2
+    dest: /usr/local/task-management/task-management-back/current/03_restart.sh
+    group: root
+    mode: 0755
+
+- name: task-management-backのrun.shの配置
+  become: yes
+  template:
+    src: tm_back_run.sh.j2
+    dest: /usr/local/task-management/task-management-back/current/run.sh
+    group: root
+    mode: 0755
+
+- name: task-management-backのtask-management.confの配置
+  become: yes
+  template:
+    src: tm_back.conf.sh.j2
+    dest: /usr/local/task-management/task-management-back/current/task-management.conf
+    group: root
+    mode: 0755
+
+- name: task-management-frontの01_build.shの配置
+  become: yes
+  template:
+    src: tm_front_build.sh.j2
+    dest: /usr/local/task-management/task-management-front/current/01_build.sh
+    group: root
+    mode: 0755
+
+- name: task-management-frontの02_restart.shの配置
+  become: yes
+  template:
+    src: tm_front_restart.sh.j2
+    dest: /usr/local/task-management/task-management-front/current/02_restart.sh
+    group: root
+    mode: 0755
+
+- name: task-management-frontの03_stop.shの配置
+  become: yes
+  template:
+    src: tm_front_stop.sh.j2
+    dest: /usr/local/task-management/task-management-front/current/03_stop.sh
+    group: root
+    mode: 0755
+
+- name: task-management-frontのrun.shの配置
+  become: yes
+  template:
+    src: tm_front_run.sh.j2
+    dest: /usr/local/task-management/task-management-front/current/run.sh
+    group: root
+    mode: 0755

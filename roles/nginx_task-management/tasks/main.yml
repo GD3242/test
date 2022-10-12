@@ -1,0 +1,13 @@
+---
+- debug: msg="nginx_task-management start"
+- name: install nginx
+  become: yes
+  shell: amazon-linux-extras install -y nginx1
+
+- name: app2.confの配置
+  become: yes
+  template:
+    src: task_management_{{ stage }}.conf.j2
+    dest: /etc/nginx/conf.d/app2.conf
+  notify:
+    - restart nginx

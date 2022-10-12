@@ -1,0 +1,26 @@
+#!/bin/bash
+REPOSITORY=task-management-front
+TARGET=/usr/local/task-management_src/${REPOSITORY}
+
+BRANCH={{ branch }}
+
+echo "cd ${TARGET}"
+cd ${TARGET}
+
+echo "git checkout ${BRANCH}"
+git checkout ${BRANCH}
+
+echo "git pull origin ${BRANCH} --no-edit"
+git pull origin ${BRANCH} --no-edit
+
+echo "yarn install"
+yarn install
+
+echo "rm -rf app/styles/*"
+rm -rf app/styles/*
+
+echo "yarn run build:css"
+yarn run build:css
+
+echo "yarn build"
+yarn build

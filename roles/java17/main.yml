@@ -1,0 +1,18 @@
+---
+- debug: msg="java17 start"
+
+- name: Install corret.
+  become: yes
+  yum:
+    name: 'https://corretto.aws/downloads/resources/17.0.4.9.1/java-17-amazon-corretto-devel-17.0.4.9-1.x86_64.rpm'
+    state: present
+
+- name: Alternatives.
+  alternatives:
+    name: '{{ item }}'
+    link: '/usr/bin/{{ item }}'
+    path: '/usr/lib/jvm/java-17-amazon-corretto.x86_64/bin/{{ item }}'
+  with_items:
+    - java
+    - javac
+# https://white-azalea.hatenablog.jp/entry/2019/03/19/235937

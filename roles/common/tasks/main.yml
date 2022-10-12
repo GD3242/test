@@ -1,0 +1,26 @@
+#2022/03/22:ansible実行中にエラーが出たためコメントアウトしました。
+#- name: localtimeの変更
+#  become: yes
+#  shell: cp -p /usr/share/zoneinfo/Japan /etc/localtime
+
+- name: UTCからJSTに変更
+  become: yes
+  template:
+    src: clock.j2
+    dest: /etc/sysconfig/clock
+    owner: root
+    group: root
+    mode: 0644
+
+- name: 日本語化
+  become: yes
+  template:
+    src: i18n.j2
+    dest: /etc/sysconfig/i18n
+    owner: root
+    group: root
+    mode: 0644
+
+- name: 日本語化反映
+  become: yes
+  shell: source /etc/sysconfig/i18n

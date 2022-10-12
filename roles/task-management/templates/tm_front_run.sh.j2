@@ -1,0 +1,6 @@
+#!/bin/bash
+REPOSITORY=task-management-front
+TARGET=/usr/local/task-management_src/${REPOSITORY}
+echo "cd ${TARGET}"
+cd ${TARGET}
+pm2 start "yarn start" --name task-management

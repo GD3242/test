@@ -1,0 +1,18 @@
+#!/bin/bash
+REPOSITORY=task-management-back
+TARGET=/usr/local/task-management_src/${REPOSITORY}
+
+BRANCH={{ branch }}
+SPRING_BOOT_PROP={{ stage }}
+
+echo "cd ${TARGET}"
+cd ${TARGET}
+
+echo "git checkout ${BRANCH}"
+git checkout ${BRANCH}
+
+echo "git pull origin ${BRANCH} --no-edit"
+git pull origin ${BRANCH} --no-edit
+
+echo "sh gradlew clean build -Penv=${SPRING_BOOT_PROP}"
+sh gradlew clean build -Penv="${SPRING_BOOT_PROP}"
