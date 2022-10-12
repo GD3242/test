@@ -20,6 +20,7 @@
     mode: 0644
   notify:
     - reload systemctl
+  service: name=task-management.service state=stopped enabled=yes
 
 - name: task-management-frontのrun.shの配置.
   become: yes
